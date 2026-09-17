@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+  body {
+    @apply bg-sky-50 text-slate-900 font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-full transition-all duration-200 shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-sky-50 text-sky-600 font-semibold rounded-full border-2 border-sky-200 hover:border-sky-400 transition-all duration-200 shadow hover:shadow-md;
+  }
+  .btn-gold {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold rounded-full transition-all duration-200 shadow-lg hover:shadow-amber-200 hover:-translate-y-0.5;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 border-2 border-sky-400 text-sky-600 hover:bg-sky-500 hover:text-white font-semibold rounded-full transition-all duration-200;
+  }
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-full transition-all duration-200;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-sky-100;
+  }
+  .form-input {
+    @apply w-full px-4 py-3 border border-sky-200 rounded-xl text-slate-900 placeholder-slate-400 bg-white focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition-all duration-200;
+  }
+  .form-label {
+    @apply block text-sm font-semibold text-slate-700 mb-1.5;
+  }
+  .form-select {
+    @apply w-full px-4 py-3 border border-sky-200 rounded-xl text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition-all duration-200;
+  }
+  .badge-status {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-success {
+    @apply badge-status bg-emerald-100 text-emerald-700;
+  }
+  .badge-warning {
+    @apply badge-status bg-amber-100 text-amber-700;
+  }
+  .badge-danger {
+    @apply badge-status bg-red-100 text-red-700;
+  }
+  .badge-info {
+    @apply badge-status bg-sky-100 text-sky-700;
+  }
+  .badge-secondary {
+    @apply badge-status bg-slate-100 text-slate-600;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-slate-900;
+  }
+  .section-subtitle {
+    @apply text-lg text-slate-500 mt-3 max-w-2xl mx-auto;
+  }
+  .gradient-primary {
+    @apply bg-gradient-to-br from-sky-500 to-sky-700;
+  }
+  .gradient-gold {
+    @apply bg-gradient-to-r from-amber-400 to-amber-500;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-sky-50 hover:text-sky-700 font-medium transition-all duration-200;
+  }
+  .sidebar-link.active {
+    @apply bg-sky-500 text-white shadow-md shadow-sky-200;
+  }
+  .table-th {
+    @apply px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider;
+  }
+  .table-td {
+    @apply px-4 py-4 text-sm text-slate-700;
+  }
+  .kpi-card {
+    @apply card p-6 flex items-center gap-4;
+  }
+  .page-header {
+    @apply flex items-center justify-between mb-6;
+  }
+  .page-title {
+    @apply text-2xl font-bold text-slate-900;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .animation-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  .animation-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}

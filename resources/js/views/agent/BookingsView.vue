@@ -1,0 +1,1 @@
+<template><div class="space-y-4"><div class="page-header"><h2 class="page-title">Booking Jamaah</h2></div><div class="card p-8 text-center text-slate-400">Daftar booking dari jamaah referral Anda tersedia di sini.</div></div></template>

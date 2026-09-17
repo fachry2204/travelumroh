@@ -1,0 +1,10 @@
+<template><div class="space-y-6"><div class="page-header"><h2 class="page-title">Booking Saya</h2></div><div v-if="loading" class="card p-12 text-center"><div class="w-10 h-10 border-4 border-sky-500 border-t-transparent rounded-full animate-spin mx-auto"></div></div><div v-else-if="!items.length" class="card p-12 text-center"><div class="text-5xl mb-3">📋</div><p class="text-slate-400">Belum ada booking</p><router-link to="/paket-umroh" class="btn-primary mt-4">Cari Paket Umroh</router-link></div><div v-else class="space-y-4"><router-link v-for="b in items" :key="b.id" :to="`/member/booking/${b.id}`" class="card p-5 flex items-center gap-4 hover:-translate-y-0.5 transition-all group block"><div class="w-14 h-14 rounded-xl gradient-primary text-white font-bold text-sm flex items-center justify-center">{{ b.booking_number.slice(-4) }}</div><div class="flex-1 min-w-0"><div class="font-bold text-slate-900 group-hover:text-sky-600 transition-colors line-clamp-1">{{ b.package?.name }}</div><div class="text-sm text-slate-500 mt-0.5">{{ b.total_pilgrims }} jamaah • {{ formatCurrency(b.total_amount) }}</div><div class="text-xs text-slate-400 mt-0.5">{{ formatDate(b.created_at) }}</div></div><div class="flex flex-col items-end gap-2"><StatusBadge :status="b.booking_status" type="booking" /><span class="text-xs text-slate-400">→</span></div></router-link></div></div></template>
+<script setup>
+import { ref, onMounted } from 'vue'
+import api from '@/plugins/axios'
+import StatusBadge from '@/components/StatusBadge.vue'
+const items = ref([]), loading = ref(true)
+function formatDate(d) { return new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) }
+function formatCurrency(val) { return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0, notation: 'compact' }).format(val) }
+onMounted(async () => { try { const { data } = await api.get('/member/bookings'); items.value = data.data.data || data.data } finally { loading.value = false } })
+</script>

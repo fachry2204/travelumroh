@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('representatives', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('region_name', 100);
+            $table->text('office_address')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->timestamps();
+        });
+
+        Schema::create('agents', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('representative_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('agent_code', 20)->unique();
+            $table->string('referral_code', 20)->unique();
+            $table->enum('commission_type', ['percentage', 'fixed'])->default('percentage');
+            $table->decimal('commission_value', 10, 2)->default(0);
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('agents');
+        Schema::dropIfExists('representatives');
+    }
+};
